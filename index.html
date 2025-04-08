@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>National Lottery Simulator</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>National Lottery Simulator</h1>
+            <div class="credits-display">Credits: <span id="credits">250</span></div>
+            
+            <div class="controls">
+                <div class="input-group">
+                    <label for="boardNo">Number of Boards (1-10):</label>
+                    <input type="number" id="boardNo" name="boardNo" min="1" max="10" value="1">
+                    <button id="buyBoardsBtn">Buy Boards</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="startDrawBtn" disabled>Start Draw</button>
+                    <button id="resetGameBtn">Reset Game</button>
+                </div>
+            </div>
+            
+            <div id="boardsContainer" class="boards-container"></div>
+            
+            <div class="draw-section">
+                <h2>Winning Numbers</h2>
+                <div id="winningNumbers" class="winning-numbers"></div>
+                
+                <h2>Draw History</h2>
+                <div id="drawHistory" class="draw-history"></div>
+            </div>
+        </div>
+        
+        <script src="script.js"></script>
+    </body>
+</html>
