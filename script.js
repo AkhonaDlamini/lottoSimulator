@@ -221,6 +221,27 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         }
         
+        // Animate draw (main numbers first)
+    let currentIndex = 0;
+    const drawInterval = setInterval(() => {
+        if (currentIndex < 6) {
+            const num = winningNumbers[currentIndex];
+            const numElement = document.createElement('div');
+            numElement.className = 'winning-number';
+            numElement.textContent = num;
+            winningNumbersDisplay.appendChild(numElement);
+            currentIndex++;
+        } else if (currentIndex === 6) {
+            // Reveal bonus ball after main numbers
+            document.getElementById('bonus-number-container').classList.remove('hidden');
+            document.getElementById('bonus-number').textContent = bonusNumber;
+            currentIndex++;
+        } else {
+            clearInterval(drawInterval);
+            calculateResults(); // Update this function next
+        }
+    }, 1000);
+
         // Display winning numbers
         displayWinningNumbers();
         

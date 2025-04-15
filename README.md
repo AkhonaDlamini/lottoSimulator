@@ -12,7 +12,7 @@ Winnings Calculation displays payouts based on matches, the results are displaye
 draws with timestamps, winning numbers, and total winnings. Reset Option which fully resets the game to initial state.
 
 # ADDITIONAL FEATURES
-There are no additional features i have added.
+Prevented invalid inputs such as duplicated numbers, incomplete boards and showed errors for each validation. Also did dynamic updates.
 
 # REQUIRED FEATURES
 I implemented all the required features.
