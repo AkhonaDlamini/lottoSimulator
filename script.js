@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let finalizedBoards = 0;
     let winningNumbers = [];
     let drawHistory = [];
+    let bonusNumber = null;
 
     // DOM elements
     const creditsDisplay = document.getElementById("credits");
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function(){
         numberBtns.forEach(btn => {
             btn.classList.remove('selected');
         });
-        
+
         const selectedNumbers = [];
 
         // Generate 6 random numbers that are not duplicated:
@@ -210,6 +211,15 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         }
         winningNumbers.sort((a, b) => a - b);
+
+        while(!bonusNumber){
+            const num = Math.floor(Math.random() * 20) + 1;
+
+            // Check if the bonus ball is on the selected numbers
+            if(!winningNumbers.includes(num)){
+                bonusNumber = num;
+            }
+        }
         
         // Display winning numbers
         displayWinningNumbers();
@@ -317,5 +327,19 @@ document.addEventListener("DOMContentLoaded", function(){
     
     function updateCreditsDisplay() {
         creditsDisplay.textContent = credits;
+    }
+
+    // Play sound if not muted
+    function playSound(sound){
+        if(isMuted) return false;
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log("Sound blocked by browser"));
+        return true;
+    }
+
+    // Toggle mute
+    function toggleMute() {
+        isMuted = !isMuted;
+        persistentMultipleTabManager.textContent = isMuted ? "Unmute" : "Mute";
     }
 });

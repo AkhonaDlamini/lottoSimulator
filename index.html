@@ -31,9 +31,23 @@
                 <h2>Winning Numbers</h2>
                 <div id="winningNumbers" class="winning-numbers"></div>
                 
+                <div id="bonus-number-container" class="hidden">
+                    <h3>Bonus Ball:</h3>
+                    <div id="bonus-number" class="winning-number-bonus"></div>
+                </div>
+
                 <h2>Draw History</h2>
                 <div id="drawHistory" class="draw-history"></div>
             </div>
+
+              <!-- Sound Toggle -->
+              <button id="mute-btn">🔊 Mute</button>
+
+               <!-- Hidden Audio Elements -->
+                <audio id="select-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
+                <audio id="draw-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-fast-small-sweep-transition-166.mp3" preload="auto"></audio>
+                <audio id="win-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
+
         </div>
         
         <script src="script.js"></script>
