@@ -96,6 +96,51 @@ document.addEventListener("DOMContentLoaded", function(){
         // Add finalize button event listener
         const finalizeBtn = document.getElementById(`finalize-${boardId}`);
         finalizeBtn.addEventListener('click', () => finalizeBoard(boardId));
+
+        // Create Btn for Quick Pick functionality
+        const quickPickBtn = document.createElement("button");
+        quickPickBtn.className = "quick-pick-btn";
+        quickPickBtn.textContent = "Quick Pick";
+        quickPickBtn.addEventListener("click", ()=> quickPick(boardId));
+        grid.parentNode.appendChild(quickPickBtn);
+    }
+
+    // Quick Pick function (//Additional Functionality)
+    function quickPick(boardId){
+        
+        const board = boards[boardId];
+        if (board.finalized) return;  // Don't allow changes to finalized boards
+    
+        // Clear previous selections
+        board.numbers = [];
+        const numberBtns = document.querySelectorAll(`#grid-${boardId} .number-btn`);
+        numberBtns.forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        
+        const selectedNumbers = [];
+
+        // Generate 6 random numbers that are not duplicated:
+        while(selectedNumbers.length < 6){
+            const randomNumber = Math.floor(Math.random() * 20) + 1;
+
+            // checks if the generated random number exists
+            if(!selectedNumbers.includes(randomNumber)){
+                selectedNumbers.push(randomNumber);
+            }
+        }
+
+         // Update UI and state
+    selectedNumbers.forEach(num => {
+        board.numbers.push(num);
+        const numBtn = document.querySelector(`#grid-${boardId} .number-btn[data-number="${num}"]`);
+        numBtn.classList.add('selected');
+    });
+
+    // Update display and finalize button state
+    updateSelectedNumbersDisplay(boardId);
+    document.getElementById(`finalize-${boardId}`).disabled = false;
+
     }
     
     function toggleNumber(boardId, number) {
